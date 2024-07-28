@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- color of address bar in mobile browser -->
+  <meta name="theme-color" content="#F5C332">
+  <!-- favicon  -->
+  <link rel="shortcut icon" href="img/ui/logo.ico" type="image/x-icon">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="/css/plugins/bootstrap.min.css">
+  <!-- swiper css -->
+  <link rel="stylesheet" href="/css/plugins/swiper.min.css">
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="/css/plugins/datepicker.css">
+  <!-- mapbox css -->
+  <link href="/css/plugins/mapbox-style.css" rel='stylesheet'>
+  <!-- fancybox css -->
+  <link rel="stylesheet" href="/css/plugins/fancybox.min.css">
+  <!-- starbelly css -->
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- page title -->
+  <title><%= product.name %></title>
+</head>
+
+<body>
+  <!-- app wrapper -->
+  <div class="sb-app">
+    <!-- click effect -->
+    <div class="sb-click-effect"></div>
+    <!-- loader -->
+    <div class="sb-load"></div>
+    <!-- top bar -->
+    <div class="sb-top-bar-frame">
+      <div class="sb-top-bar-bg"></div>
+      <div class="container">
+        <div class="sb-top-bar">
+          <a href="/" class="sb-logo-frame">
+            <!-- logo img -->
+            <img src="https://www.shutterstock.com/shutterstock/videos/1086963857/thumb/4.jpg?ip=x480" alt="Starbelly">
+          </a>
+          <!-- menu -->
+          <div class="sb-right-side">
+            <nav id="sb-dynamic-menu" class="sb-menu-transition">
+              <ul class="sb-navigation">
+                <li class="">
+                  <a href="/">Home</a>
+                </li>
+                <li class="">
+                  <a href="/products">Products</a>
+                </li>
+                <li class="">
+                  <a href="/logout">Logout</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="sb-buttons-frame">
+              <!-- button -->
+              <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
+                <span class="sb-icon">
+                  <img src="/img/ui/icons/cart.svg" alt="icon">
+                </span>
+                <i class="sb-cart-number"><%= user.cart.length %></i>
+              </div>
+              <!-- button end -->
+              <!-- menu btn -->
+              <div class="sb-menu-btn"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- minicart -->
+      <div class="sb-minicart">
+        <div class="sb-minicart-content">
+          <div class="sb-ib-title-frame sb-mb-30">
+            <h4>Your order.</h4><i class="fas fa-arrow-down"></i>
+          </div>
+          <% for(let i=0;i<user.cart.length;i++) {%>
+          <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
+            <div class="sb-cover-frame">
+              <img src="<%= user.cart[i].productId.imageUrl %>" alt="product">
+            </div>
+            <div class="sb-card-tp">
+              <h4 class="sb-card-title"><%= user.cart[i].productId.name %></h4>
+              <div class="sb-price"><sub>₹</sub> <%= user.cart[i].productId.price %></div>
+            </div>
+          </a>
+          <%}%>
+        </div>
+        <div class="sb-minicart-footer">
+          <!-- button -->
+          <a href="/cart" class="sb-btn sb-btn-gray sb-btn-text">
+            <span>View order</span>
+          </a>
+          <!-- button end -->
+          <!-- button -->
+          <a href="/checkout" class="sb-btn sb-btn-text">
+            <span>Checkout</span>
+          </a>
+          <!-- button end -->
+        </div>
+      </div>
+      <!-- minicart end -->
+    </div>
+    <!-- top bar end -->
+
+    <!-- dynamic content -->
+    <div id="sb-dynamic-content" class="sb-transition-fade">
+
+      <!-- banner -->
+      <section class="sb-banner sb-banner-xs sb-banner-color">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- main title -->
+              <div class="sb-main-title-frame">
+                <div class="sb-main-title">
+                  <h1 class="sb-h2"><%= product.name %></h1>
+                  <ul class="sb-breadcrumbs">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/products">All Products</a></li>
+                    <li><a href="/product"><%= product.name %></a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- main title end -->
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- banner end -->
+
+      <!-- product -->
+      <section class="sb-p-90-0">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="sb-gallery-item sb-gallery-square sb-mb-90">
+                <img src="<%= product.imageUrl %>" alt="photo">
+                <% if(product.veg) { %>
+                <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> Vegan</div>
+                <% } %>
+                <!-- button -->
+                <a data-fancybox="menu" data-no-swup href="<%= product.imageUrl %>" class="sb-btn sb-btn-2 sb-btn-icon sb-btn-gray sb-zoom">
+                  <span class="sb-icon">
+                    <img src="/img/ui/icons/zoom.svg" alt="icon">
+                  </span>
+                </a>
+                <!-- button end -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="sb-product-description sb-mb-90">
+                <div class="sb-price-frame sb-mb-30">
+                  <h3><%= product.name %></h3>
+                  <div class="sb-price"><sub>₹</sub> <%= product.price %></div>
+                </div>
+                <ul class="sb-stars sb-mb-25">
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><i class="fas fa-star"></i></li>
+                  <li><span>(<%= product.rating %> ratings)</span></li>
+                </ul>
+                <p class="sb-text sb-mb-30"><%= product.description %>.</p>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="sb-features-item sb-features-item-sm sb-mb-30">
+                      <div class="sb-number">01</div>
+                      <div class="sb-feature-text">
+                        <h4 class="sb-mb-15">Add to the cart and place an order</h4>
+                        <p class="sb-text sb-text-sm">Porro comirton pera nemo veniam</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="sb-features-item sb-features-item-sm sb-mb-30">
+                      <div class="sb-number">02</div>
+                      <div class="sb-feature-text">
+                        <h4 class="sb-mb-15">Enter your phone number and address</h4>
+                        <p class="sb-text sb-text-sm">Eligendi adipisci numquam.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="sb-features-item sb-features-item-sm sb-mb-30">
+                      <div class="sb-number">03</div>
+                      <div class="sb-feature-text">
+                        <h4 class="sb-mb-15">Enjoy your favorite food at home!</h4>
+                        <p class="sb-text sb-text-sm">Nnecessitatibus praesentium</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sb-buttons-frame">
+                  <div class="sb-input-number-frame">
+                    <div class="sb-input-number-btn sb-sub">-</div>
+                    <input type="number" value="1" min="1" max="10">
+                    <div class="sb-input-number-btn sb-add">+</div>
+                  </div>
+                  <!-- button -->
+                  <a href="#." class="sb-btn sb-atc">
+                    <span class="sb-icon">
+                      <img src="/img/ui/icons/cart.svg" alt="icon">
+                    </span>
+                    <span class="sb-add-to-cart-text">Add to cart</span>
+                    <span class="sb-added-text">Added</span>
+                  </a>
+                  <!-- button end -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- filter -->
+          <div class="sb-filter">
+            <a href="#." data-filter=".sb-details-tab" class="sb-filter-link ">Product details</a>
+            <a href="#." data-filter=".sb-reviews-tab" class="sb-filter-link">Reviews</a>
+          </div>
+          <!-- filter end -->
+          <div class="sb-masonry-grid sb-tabs">
+            <div class="sb-grid-sizer"></div>
+            <div class="sb-grid-item sb-details-tab" style="position: absolute">
+              <div class="sb-tab">
+                <p class="sb-text sb-mb-15"><%= product.description %>.</p>
+              </div>
+            </div>
+            <div class="sb-grid-item sb-reviews-tab" style="position: absolute">
+              <div class="sb-tab">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="sb-review-card sb-mb-60">
+                      <div class="sb-review-header sb-mb-15">
+                        <h4 class="sb-mb-10">Very tasty</h4>
+                        <ul class="sb-stars">
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <p class="sb-text sb-mb-15">Inventore possimus laudantium provident, rem eligendi velit. Aut molestias, ipsa itaque laborum, natus
+                        tempora, ut soluta animi ducimus dignissimos deserunt doloribus in reprehenderit rem accusamus! Quibusdam labore, aliquam dolor harum!</p>
+                      <div class="sb-author-frame">
+                        <div class="sb-avatar-frame">
+                          <img src="/img/faces/1.jpg" alt="Guest">
+                        </div>
+                        <h4>Emma Newman</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-review-card sb-mb-60">
+                      <div class="sb-review-header sb-mb-15">
+                        <h4 class="sb-mb-10">I have lunch here every day</h4>
+                        <ul class="sb-stars">
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                          <li><i class="fas fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <p class="sb-text sb-mb-15">Tempora ut soluta animi ducimus dignissimos deserunt doloribus in reprehenderit Reprehenderit rem accusamus! Quibusdam labore, aliquam dolor harum!</p>
+                      <div class="sb-author-frame">
+                        <div class="sb-avatar-frame">
+                          <img src="/img/faces/2.jpg" alt="Guest">
+                        </div>
+                        <h4>Paul Trueman</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- product end -->
+
+      <!-- short menu -->
+      <section class="sb-short-menu sb-p-0-90">
+        <div class="sb-bg-2">
+          <div></div>
+        </div>
+        <div class="container">
+          <div class="sb-group-title sb-mb-30">
+            <div class="sb-left sb-mb-30">
+              <h2 class="sb-cate-title sb-mb-30">It is usually bought together with this product</h2>
+              <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
+            </div>
+            <div class="sb-right sb-mb-30">
+              <!-- slider navigation -->
+              <div class="sb-slider-nav">
+                <div class="sb-prev-btn sb-short-menu-prev"><i class="fas fa-arrow-left"></i></div>
+                <div class="sb-next-btn sb-short-menu-next"><i class="fas fa-arrow-right"></i></div>
+              </div>
+              <!-- slider navigation end -->
+            </div>
+          </div>
+          <div class="swiper-container sb-short-menu-slider-4i">
+            <div class="swiper-wrapper">
+              <% for(let i = 0; i < products.length; i++) { %>
+                <% if(products[i].category == product.category && products[i].name != product.name) { %>
+              <div class="swiper-slide">
+                <div class="sb-menu-item">
+                  <a href="product/<%= products[i]._id %>" class="sb-cover-frame">
+                    <img src="<%= products[i].imageUrl %>" alt="product">
+                    <% if(products[i].veg) { %>
+                    <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> Vegan</div>
+                    <% } %>
+                  </a>
+                  <div class="sb-card-tp">
+                    <h4 class="sb-card-title"><a href="shop-list-1.html"><%= products[i].name %></a></h4>
+                    <div class="sb-price"><sub>₹</sub> <%= products[i].price %></div>
+                  </div>
+                  <div class="sb-description">
+                    <p class="sb-text sb-mb-15"><%= products[i].description %>.</p>
+                  </div>
+                  <div class="sb-card-buttons-frame">
+                    <!-- button -->
+                    <form action="/product/?_method=PUT" method="post" class="d-inline">
+                      <input type="hidden" name="productId" value="<%= products[i]._id %>">
+                      <button type="submit" class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0">
+                        <span class="sb-icon">
+                          <img src="/img/ui/icons/arrow.svg" alt="icon">
+                        </span>
+                      </button>
+                    </form>
+                    <!-- button end -->
+                    <!-- button -->
+                    <a href="#." class="sb-btn sb-atc">
+                      <span class="sb-icon">
+                        <img src="/img/ui/icons/cart.svg" alt="icon">
+                      </span>
+                      <span class="sb-add-to-cart-text">Add to cart</span>
+                      <span class="sb-added-text">Added</span>
+                    </a>
+                    <!-- button end -->
+                  </div>
+                </div>
+              </div>
+              <% } %>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- short menu end -->
+
+      <!-- footer -->
+      <footer>
+        <div class="container">
+          <div class="sb-footer-frame">
+            <a href="home-1.html" class="sb-logo-frame">
+              <!-- logo img -->
+              <!-- <img src="img/ui/logo.svg" alt="Starbelly"> -->
+            </a>
+            <ul class="sb-social">
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+            </ul>
+            <div class="sb-copy">&copy; late 2021 Starbelly. All Rights Reserved.</div>
+          </div>
+        </div>
+      </footer>
+      <!-- footer end -->
+
+    </div>
+    <!-- dynamic content end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  <!-- jquery js -->
+  <script src="/js/plugins/jquery.min.js"></script>
+  <!-- smooth scroll js -->
+  <script src="/js/plugins/smooth-scroll.js"></script>
+  <!-- swup js -->
+  <script src="/js/plugins/swup.min.js"></script>
+  <!-- swiper js -->
+  <script src="/js/plugins/swiper.min.js"></script>
+  <!-- datepicker js -->
+  <script src="/js/plugins/datepicker.js"></script>
+  <!-- isotope js -->
+  <script src="/js/plugins/isotope.js"></script>
+  <!-- sticky -->
+  <script src="/js/plugins/sticky.js"></script>
+  <!-- mapbox js -->
+  <script src="/js/plugins/mapbox.min.js"></script>
+  <!-- fancybox js -->
+  <script src="/js/plugins/fancybox.min.js"></script>
+  <!-- starbelly js -->
+  <script src="/js/main.js"></script>
+
+</body>
+
+</html>

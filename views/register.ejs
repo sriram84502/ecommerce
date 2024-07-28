@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css" rel="stylesheet"/>
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+        /* Custom Styles for Input Fields */
+        .form-outline {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .form-outline input.form-control {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ced4da;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .form-outline input.form-control:focus {
+            border-color: #007bff;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+        }
+        .form-outline label {
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            color: #495057;
+            pointer-events: none;
+            transition: top 0.1s ease-in-out, left 0.1s ease-in-out, font-size 0.1s ease-in-out;
+        }
+        .form-outline input.form-control:focus ~ label,
+        .form-outline input.form-control:not(:placeholder-shown) ~ label {
+            top: -0.25rem;
+            left: 0.75rem;
+            font-size: 0.75rem;
+            color: #007bff;
+        }
+    </style>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/a/a3/Logo_of_Andhra_Loyola_Institute_of_Engineering_and_Technology.png" type="image/x-icon">
+</head>
+<body style="background-color: #eeee;">
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                        <ol class="breadcrumb mb-0 d-flex" style="justify-content: space-between;">
+                            <li class="breadcrumb-item"><b> &nbsp;Please Create an Account to Continue🔐</b></li>
+                            <li>
+                                <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                                    <a href="https://www.facebook.com/ALIET.page/"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1" style="background-color: #007bff;">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button></a>
+                        
+                                    <a href="https://www.instagram.com/alcvijayawada/"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1" style="background-color: #007bff;">
+                                        <i class="fab fa-instagram"></i>
+                                    </button></a>
+                        
+                                    <a href="https://www.linkedin.com/company/andhra-loyola-institute-of-engineering-technology-vijayawada-andhra-pradesh"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1" style="background-color: #007bff;">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </button></a>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <section class="vh-50 py-5 m-5">
+                                <div class="container-fluid h-custom">
+                                    <div class="row d-flex justify-content-center align-items-center h-100">
+                                        <div class="col-md-9 col-lg-6 col-xl-5">
+                                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                                            <dotlottie-player src="https://lottie.host/d1e6902f-a3e0-4f30-8573-548d9492acc2/n4MTP4hP5I.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
+                                        </div>
+                                        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                                            <form action="/register" method="post">
+                                                <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-center">
+                                                    <p class="lead fw-normal mb-0 me-3">Register</p>
+                                                </div>
+                                        
+                                                <div class="divider d-flex align-items-center mb-4 mt-2">
+                                                    <!-- <p class="text-center fw-bold mx-3 mb-0">Or</p> -->
+                                                </div>
+                                        
+                                                <!-- Name input -->
+                                                <div data-mdb-input-init class="form-outline mb-4">
+                                                    <input type="text" name="name" id="form3Example3" class="form-control form-control-lg"
+                                                    placeholder="Enter Name" required/>
+                                                    <label class="form-label" for="form3Example3">Name</label>
+                                                </div>
+
+                                                <!-- Email input -->
+                                                <div data-mdb-input-init class="form-outline mb-4">
+                                                    <input type="email" name="username" id="form3Example3" class="form-control form-control-lg"
+                                                    placeholder="Enter you email address" required/>
+                                                    <label class="form-label" for="form3Example3">Email</label>
+                                                </div>
+                                        
+                                                <!-- Password input -->
+                                                <div data-mdb-input-init class="form-outline mb-3">
+                                                    <input type="password" name="password" id="form3Example4" class="form-control form-control-lg"
+                                                    placeholder="Enter password" required/>
+                                                    <label class="form-label" for="form3Example4">Password</label>
+                                                </div>
+
+                                                <!-- Confirm Password input -->
+                                                <div data-mdb-input-init class="form-outline mb-3">
+                                                    <input type="password" name="cpassword" id="form3Example4" class="form-control form-control-lg"
+                                                    placeholder="Confirm password" required/>
+                                                    <label class="form-label" for="form3Example4">Confirm Password</label>
+                                                </div>
+                                                <p style="color: red; text-align: start;"><%= error %></p>
+                                        
+                                                <div class="text-center text-lg-start mt-4 pt-2">
+                                                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #007bff;">Register</button>
+                                                    <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/login"
+                                                        class="link-danger">Login</a></p>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>

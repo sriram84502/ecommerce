@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#F5C332">
+  <link rel="shortcut icon" href="img/ui/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/plugins/font-awesome.min.css">
+  <link rel="stylesheet" href="css/plugins/bootstrap.min.css">
+  <link rel="stylesheet" href="css/plugins/swiper.min.css">
+  <link rel="stylesheet" href="css/plugins/datepicker.css">
+  <link href="css/plugins/mapbox-style.css" rel='stylesheet'>
+  <link rel="stylesheet" href="css/plugins/fancybox.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Checkout</title>
+</head>
+
+<body>
+  <div class="sb-app">
+    <div class="sb-click-effect"></div>
+    <div class="sb-load"></div>
+    <div class="sb-top-bar-frame">
+      <div class="sb-top-bar-bg"></div>
+      <div class="container">
+        <div class="sb-top-bar">
+          <a href="/" class="sb-logo-frame">
+            <img src="https://www.shutterstock.com/shutterstock/videos/1086963857/thumb/4.jpg?ip=x480" alt="Starbelly">
+          </a>
+          <div class="sb-right-side">
+            <nav id="sb-dynamic-menu" class="sb-menu-transition">
+              <ul class="sb-navigation">
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/products">Products</a></li>
+                <li class=""><a href="/logout">Logout</a></li>
+              </ul>
+            </nav>
+            <div class="sb-buttons-frame">
+              <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
+                <span class="sb-icon">
+                  <img src="img/ui/icons/cart.svg" alt="icon">
+                </span>
+                <i class="sb-cart-number"><%= user.cart.length %></i>
+              </div>
+              <div class="sb-menu-btn"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sb-minicart">
+        <div class="sb-minicart-content">
+          <div class="sb-ib-title-frame sb-mb-30">
+            <h4>Your order.</h4><i class="fas fa-arrow-down"></i>
+          </div>
+          <% for(let i=0;i<user.cart.length;i++) {%>
+          <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
+            <div class="sb-cover-frame">
+              <img src="<%= user.cart[i].productId.imageUrl %>" alt="product">
+            </div>
+            <div class="sb-card-tp">
+              <h4 class="sb-card-title"><%= user.cart[i].productId.name %></h4>
+              <div class="sb-price"><sub>₹</sub> <%= user.cart[i].productId.price %></div>
+            </div>
+          </a>
+          <%}%>
+        </div>
+        <div class="sb-minicart-footer">
+          <a href="/cart" class="sb-btn sb-btn-gray sb-btn-text">
+            <span>View order</span>
+          </a>
+          <a href="/checkout" class="sb-btn sb-btn-text">
+            <span>Checkout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="sb-dynamic-content" class="sb-transition-fade">
+      <section class="sb-banner sb-banner-xs sb-banner-color">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="sb-main-title-frame">
+                <div class="sb-main-title">
+                  <h1 class="sb-h2">Checkout</h1>
+                  <ul class="sb-breadcrumbs">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#.">Checkout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sb-p-90-90">
+        <div class="container" data-sticky-container>
+          <div class="row">
+            <div class="col-lg-8">
+              <form class="sb-checkout-form">
+                <div class="sb-mb-30">
+                  <h3>Billing details</h3>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>First name</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>Last name</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>Company name</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>Country</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>City</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>State / Province</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>Street</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="text" required>
+                      <span class="sb-bar"></span>
+                      <label>Postcode</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="tel" required>
+                      <span class="sb-bar"></span>
+                      <label>Phone</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="sb-group-input">
+                      <input type="email" required>
+                      <span class="sb-bar"></span>
+                      <label>Email</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="sb-mb-30">
+                  <h3>Additional information</h3>
+                </div>
+                <div class="sb-group-input">
+                  <textarea name="name" required></textarea>
+                  <span class="sb-bar"></span>
+                  <label>Order notes</label>
+                </div>
+                <button type="submit" class="sb-btn sb-m-0" id="rzp-button1">
+                  <span class="sb-icon">
+                    <img src="img/ui/icons/arrow.svg" alt="icon">
+                  </span>
+                  <span>Place order</span>
+                </button>
+              </form>
+            </div>
+            <div class="col-lg-4">
+              <div class="sb-pad-type-2 sb-sticky" data-margin-top="120">
+                <div class="sb-co-cart-frame">
+                  <div class="sb-cart-table">
+                    <div class="sb-cart-table-header">
+                      <div class="row">
+                        <div class="col-lg-9">Product</div>
+                        <div class="col-lg-3 text-right">Total</div>
+                      </div>
+                    </div>
+                    <% let total = 0 %>
+                    <% for(let i=0;i<user.cart.length;i++) { %>
+                    <div class="sb-cart-item">
+                      <div class="row align-items-center">
+                        <div class="col-lg-9">
+                          <a class="sb-product" href="product">
+                            <div class="sb-cover-frame">
+                              <img src="<%= user.cart[i].productId.imageUrl %>" alt="product">
+                            </div>
+                            <div class="sb-prod-description">
+                              <h4 class="sb-mb-10"><%= user.cart[i].productId.name %></h4>
+                              <p class="sb-text sb-text-sm">x<%= user.cart[i].quantity %></p>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="col-lg-3 text-md-right">
+                          <div class="sb-price-2"><span>Total: </span>₹<%= user.cart[i].productId.price * user.cart[i].quantity %></div>
+                        </div>
+                      </div>
+                    </div>
+                      <% total = total + (user.cart[i].productId.price * user.cart[i].quantity) %>
+                    <%}%>
+                    <div class="sb-cart-total sb-cart-total-2">
+                      <div class="sb-sum">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="sb-total-title">Subtotal:</div>
+                          </div>
+                          <div class="col-6">
+                            <div class="sb-price-1 text-right">₹<%= total %></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sb-realy-sum">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="sb-total-title">Total:</div>
+                          </div>
+                          <div class="col-6">
+                            <div class="sb-price-2 text-right">₹<%= total + 20 %></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <button class="sb-btn sb-btn-primary" id="rzp-button1">Pay Now</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <div class="sb-footer-frame">
+            <a href="home-1.html" class="sb-logo-frame">
+              <img src="img/ui/logo.svg" alt="Starbelly">
+            </a>
+            <ul class="sb-social">
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+            </ul>
+            <div class="sb-copy">&copy; late 2021 Starbelly. All Rights Reserved.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/plugins/jquery.min.js"></script>
+  <script src="js/plugins/smooth-scroll.js"></script>
+  <script src="js/plugins/swup.min.js"></script>
+  <script src="js/plugins/swiper.min.js"></script>
+  <script src="js/plugins/datepicker.js"></script>
+  <script src="js/plugins/isotope.js"></script>
+  <script src="js/plugins/sticky.js"></script>
+  <script src="js/plugins/mapbox.min.js"></script>
+  <script src="js/plugins/fancybox.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    document.getElementById('rzp-button1').onclick = async function (e) {
+      e.preventDefault();
+
+      try {
+        const response = await fetch('/create-order', { method: 'POST' });
+        const order = await response.json();
+
+        var options = {
+          "key": "<%= process.env.RAZOR_PAY_ID_KEY %>", // Enter the Key ID generated from the Dashboard
+          "amount": order.amount, // Amount is in currency subunits. Default currency is INR.
+          "currency": order.currency,
+          "name": "Starbelly",
+          "description": "Test Transaction",
+          "image": "https://your-logo-url.com",
+          "order_id": order.id, // This is the order_id created in the backend.
+          "handler": function (response) {
+            alert("Payment successful. Payment ID: " + response.razorpay_payment_id);
+            // You can now make a request to your server to save the payment info and update the cart/order status
+          },
+          "prefill": {
+            "name": "<%= user.name %>",
+            "email": "<%= user.email %>",
+            "contact": "9999999999"
+          },
+          "notes": {
+            "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+            "color": "#3399cc"
+          }
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+      } catch (error) {
+        console.error('Error creating order:', error);
+      }
+    };
+  </script>
+</body>
+
+</html>

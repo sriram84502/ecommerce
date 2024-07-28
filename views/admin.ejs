@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/a/a3/Logo_of_Andhra_Loyola_Institute_of_Engineering_and_Technology.png" type="image/x-icon">
+</head>
+<body style="background-color: #eeee;">
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col">
+              <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0 d-flex" style="justify-content: space-between;">
+                  <li class="breadcrumb-item">Welcome Back <b>Admin</b>👋</li>
+                  <div class="d-flex">
+                    <li class="breadcrumb-item"><a href="/" style="text-decoration: none;color: black;">🌐Visit website</a></li>
+                    <li class="breadcrumb-item"><a href="/logout" style="text-decoration: none;color: black;">↩Logout</a></li>
+                  </div>
+                </ol>
+              </nav>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0 d-flex align-items-center">
+                    <img src="https://img.freepik.com/free-photo/view-3d-businessman_23-2150709830.jpg?size=626&ext=jpg&ga=GA1.1.1902136009.1712947618&semt=ais" alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 50px; min-height: 40px; min-width: 40px; max-height: 50px;">
+                  <li class="breadcrumb-item ps-3">Leadership is not about being in charge. It is about taking care of those in your charge</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+                <a href="/admin/sessions" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-3">
+                    <div class="card-body justify-content-center text-center">
+                        <div class="d-flex mb-1 justify-content-center" style="align-items: center; gap: 10px;">
+                            <img src="https://www.iconpacks.net/icons/1/free-users-icon-267-thumb.png" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 100px; height: 100px" >
+                        </div>
+                        <h3 class="">Users</h3>
+                        <h3 class="text-muted"><%= users.length %></h3>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <a href="/admin/categories" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-3">
+                    <div class="card-body justify-content-center text-center">
+                        <div class="d-flex mb-1 justify-content-center" style="align-items: center; gap: 10px;">
+                            <img src="https://t4.ftcdn.net/jpg/03/85/95/63/360_F_385956366_Zih7xDcSLqDxiJRYUfG5ZHNoFCSLMRjm.jpg" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 100px; height: 100px;object-fit: cover;" >
+                        </div>
+                        <h3 class="">Ctegories</h3>
+                        <h3 class="text-muted"><%= categories.length %></h3>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <a href="/admin/products" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-3">
+                    <div class="card-body justify-content-center text-center">
+                        <div class="d-flex mb-1 justify-content-center" style="align-items: center; gap: 10px;">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR46h7huwHAp9NyhCrPKUn3qbixZshexRQR3g&s" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 100px; height: 100px" >
+                        </div>
+                        <h3 class="">Products</h3>
+                        <h3 class="text-muted"><%= products.length %></h3>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <a href="/admin/orders" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-3">
+                    <div class="card-body justify-content-center text-center">
+                        <div class="d-flex mb-1 justify-content-center" style="align-items: center; gap: 10px;">
+                            <img src="https://static.vecteezy.com/system/resources/previews/010/575/092/non_2x/parcel-tracking-icon-logo-illustration-track-order-symbol-template-for-graphic-and-web-design-collection-free-vector.jpg" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 100px; height: 100px;object-fit: cover;" >
+                        </div>
+                        <h3 class="">Orders</h3>
+                        <h3 class="text-muted"><%= orders.length %></h3>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a href="/admin/popular" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-3">
+                    <div class="card-body justify-content-center text-center">
+                        <div class="d-flex mb-1 justify-content-center" style="align-items: center; gap: 10px;">
+                            <img src="https://cdn4.iconfinder.com/data/icons/popular-badges-glyph/48/Sed-08-512.png" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 100px; height: 100px;object-fit: cover;" >
+                        </div>
+                        <% let count = 0 %>
+                        <% for(let i=0;i<products.length;i++){ if(products[i].ispopular){count++;}} %>
+                        <h3 class="">Most Popular</h3>
+                        <h3 class="text-muted"><%= count %></h3>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a href="/admin/seller" style="text-decoration: none; color: inherit;">
+                    <div class="card mb-3">
+                    <div class="card-body justify-content-center text-center">
+                        <div class="d-flex mb-1 justify-content-center" style="align-items: center; gap: 10px;">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwsBdQLG7FoRJ-GVqrKKSzzyDFYrDNaix0nA&s" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 100px; height: 100px;object-fit: cover;" >
+                        </div>
+                        <% let count1 = 0 %>
+                        <% for(let i=0;i<products.length;i++){ if(products[i].isseller){count1++;}} %>
+                        <h3 class="">Best Seller</h3>
+                        <h3 class="text-muted"><%= count1 %></h3>
+                    </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+      </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>

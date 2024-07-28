@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css" rel="stylesheet"/>
+    <style>
+        .styled-input {
+            border: 2px solid black; /* Change the border color */
+            border-radius: 10px; /* Make the corners rounded */
+            padding: 10px; /* Add some padding */
+            font-size: 16px; /* Increase the font size */
+        }
+
+        .styled-input:focus {
+            border-color: #0056b3; /* Change the border color on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a shadow on focus */
+            outline: none; /* Remove the default outline */
+        }
+
+        .dropdown-menu {
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-menu input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/a/a3/Logo_of_Andhra_Loyola_Institute_of_Engineering_and_Technology.png" type="image/x-icon">
+</head>
+<body style="background-color: #eeee;">
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-3">
+                        <ol class="breadcrumb mb-0 d-flex" style="justify-content: space-between;">
+                            <li class="breadcrumb-item"><a href="/admin" style="text-decoration: none;color: #000;">⬅️Back</a></li>
+                            <div class="d-flex">
+                                <li class="breadcrumb-item"><a href="/" style="text-decoration: none;color: black;">🌐Visit website</a></li>
+                                <li class="breadcrumb-item"><a href="/logout" style="text-decoration: none;color: black;">↩Logout</a></li>
+                            </div>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+      
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <div class="d-flex">
+                                <h5 class="mb-3" style="flex: 4;">Most Popular🙌</h5> 
+                                <button type="button" class="btn btn-outline-primary ms-1 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"> ➕Add</button>
+                            </div>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="border: none;">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">ADD Product</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form class="row g-3" method="post" action="/admin/popular?_method=PUT">
+                                            <div class="modal-body">
+                                                <div class="dropdown w-100">
+                                                    <input type="text" class="form-control" id="productSearch" placeholder="Search..">
+                                                    <input type="hidden" name="productId" id="productId">
+                                                    <div class="dropdown-menu w-100" aria-labelledby="productSearch">
+                                                        <% for (let i = 0; i < products.length; i++) { %>
+                                                            <a class="dropdown-item" href="#" onclick="selectProduct('<%= products[i]._id %>', '<%= products[i].name %>')"><%= products[i].name %></a>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer mt-0" style="border: none;">
+                                                <button type="submit" class="btn btn-outline-primary">➕ADD</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <h6 class="">SNo</h6>
+                                </div>
+                                <div class="col-sm-2 text-start">
+                                    <h6 class="">Category</h6>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <h6 class="">Price</h6>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <h6 class="">Stock</h6>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <h6 class="">Category</h6>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h6 class="">Manage</h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <% var j = 1 %>
+                            <% if(products.length!=0){ %>
+                                <% for (let i=0;i<products.length;i++) { %>
+                            <% if(products[i].ispopular){ %>
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-2">
+                                            <h6 class="text-muted"><%= j %></h6>
+                                            <% j = j+1 %>
+                                        </div>
+                                        <div class="col-sm-2 text-start">
+                                            <h6 class="text-muted"><img src="<%= products[i].imageUrl %>" class="rounded-circle img-fluid me-3" style="width: 50px; min-height: 40px; min-width: 40px; max-height: 50px;" alt=""><%= products[i].name %></h6>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h6 class="text-muted" style="max-lines: 1;"><%= products[i].price %></h6>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h6 class="text-muted" style="max-lines: 1;"><%= products[i].stock %></h6>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h6 class="text-muted" style="max-lines: 1;"><%= products[i].category %></h6>
+                                        </div>
+                                        <div class="col-sm-2 ">
+                                            <form action="/admin/populars/<%= products[i]._id %>?_method=PUT" method="post">
+                                                <button type="submit" class="btn btn-info ms-1">🗑️</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                <% }}} %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#productSearch").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".dropdown-menu a").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+                if (value) {
+                    $(".dropdown-menu").addClass("show");
+                } else {
+                    $(".dropdown-menu").removeClass("show");
+                }
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('.dropdown').length) {
+                    $(".dropdown-menu").removeClass("show");
+                }
+            });
+        });
+
+        function selectProduct(productId, productName) {
+            $("#productSearch").val(productName);
+            $("#productId").val(productId);
+            $(".dropdown-menu").removeClass("show");
+        }
+    </script>
+</body>
+</html>

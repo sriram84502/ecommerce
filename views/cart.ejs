@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- color of address bar in mobile browser -->
+  <meta name="theme-color" content="#F5C332">
+  <!-- favicon  -->
+  <link rel="shortcut icon" href="img/ui/logo.ico" type="image/x-icon">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="css/plugins/font-awesome.min.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="css/plugins/bootstrap.min.css">
+  <!-- swiper css -->
+  <link rel="stylesheet" href="css/plugins/swiper.min.css">
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="css/plugins/datepicker.css">
+  <!-- mapbox css -->
+  <link href="css/plugins/mapbox-style.css" rel='stylesheet'>
+  <!-- fancybox css -->
+  <link rel="stylesheet" href="css/plugins/fancybox.min.css">
+  <!-- starbelly css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- page title -->
+  <title>Starbelly</title>
+</head>
+
+<body>
+  <!-- app wrapper -->
+  <div class="sb-app">
+    <!-- click effect -->
+    <div class="sb-click-effect"></div>
+    <!-- loader -->
+    <div class="sb-load"></div>
+    <!-- top bar -->
+    <div class="sb-top-bar-frame">
+      <div class="sb-top-bar-bg"></div>
+      <div class="container">
+        <div class="sb-top-bar">
+          <a href="/" class="sb-logo-frame">
+            <!-- logo img -->
+            <img src="https://www.shutterstock.com/shutterstock/videos/1086963857/thumb/4.jpg?ip=x480" alt="Starbelly">
+          </a>
+          <!-- menu -->
+          <div class="sb-right-side">
+            <nav id="sb-dynamic-menu" class="sb-menu-transition">
+              <ul class="sb-navigation">
+                <li class="">
+                  <a href="/">Home</a>
+                </li>
+                <li class="">
+                  <a href="/products">Products</a>
+                </li>
+                <li class="">
+                  <a href="/logout">Logout</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="sb-buttons-frame">
+              <!-- button -->
+              <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
+                <span class="sb-icon">
+                  <img src="img/ui/icons/cart.svg" alt="icon">
+                </span>
+                <i class="sb-cart-number"><%= user.cart.length %></i>
+              </div>
+              <!-- button end -->
+              <!-- menu btn -->
+              <div class="sb-menu-btn"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- minicart -->
+      <div class="sb-minicart">
+        <div class="sb-minicart-content">
+          <div class="sb-ib-title-frame sb-mb-30">
+            <h4>Your order.</h4><i class="fas fa-arrow-down"></i>
+          </div>
+          <% for(let i=0;i<user.cart.length;i++) {%>
+          <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
+            <div class="sb-cover-frame">
+              <img src="<%= user.cart[i].productId.imageUrl %>" alt="product">
+            </div>
+            <div class="sb-card-tp">
+              <h4 class="sb-card-title"><%= user.cart[i].productId.name %></h4>
+              <div class="sb-price"><sub>₹</sub> <%= user.cart[i].productId.price %></div>
+            </div>
+          </a>
+          <%}%>
+        </div>
+        <div class="sb-minicart-footer">
+          <!-- button -->
+          <a href="/cart" class="sb-btn sb-btn-gray sb-btn-text">
+            <span>View order</span>
+          </a>
+          <!-- button end -->
+          <!-- button -->
+          <a href="/checkout" class="sb-btn sb-btn-text">
+            <span>Checkout</span>
+          </a>
+          <!-- button end -->
+        </div>
+      </div>
+      <!-- minicart end -->
+    </div>
+    <!-- top bar end -->
+
+    <!-- dynamic content -->
+    <div id="sb-dynamic-content" class="sb-transition-fade">
+
+      <!-- banner -->
+      <section class="sb-banner sb-banner-xs sb-banner-color">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- main title -->
+              <div class="sb-main-title-frame">
+                <div class="sb-main-title">
+                  <h1 class="sb-h2">Cart.</h1>
+                  <ul class="sb-breadcrumbs">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#.">Cart</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- main title end -->
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- banner end -->
+
+      <!-- cart -->
+      <section class="sb-p-90-90">
+        <div class="container">
+          <div class="sb-cart-table">
+            <div class="sb-cart-table-header">
+              <div class="row">
+                <div class="col-lg-6">Product</div>
+                <div class="col-lg-3">Quantity</div>
+                <div class="col-lg-1">Price</div>
+                <div class="col-lg-1">Total</div>
+                <div class="col-lg-1"></div>
+              </div>
+            </div>
+            <% let total = 0 %>
+            <%for(let i=0;i<user.cart.length;i++){%>
+            <div class="sb-cart-item">
+              <div class="row align-items-center">
+                <div class="col-lg-6">
+                  <a class="sb-product" href="product">
+                    <div class="sb-cover-frame">
+                      <img src="<%= user.cart[i].productId.imageUrl %>" alt="product">
+                    </div>
+                    <div class="sb-prod-description">
+                      <h4 class="sb-mb-10"><%= user.cart[i].productId.name %></h4>
+                      <p class="sb-text sb-text-sm"><%= user.cart[i].productId.description %>.</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-6 col-lg-3">
+                  <div class="sb-input-number-frame">
+                    <!-- <div class="sb-input-number-btn sb-sub">-</div> -->
+                    <input type="number" value="<%= user.cart[i].quantity %>" disabled min="1" max="10">
+                    <!-- <div class="sb-input-number-btn sb-add">+</div> -->
+                  </div>
+                </div>
+                <div class="col-3 col-lg-1">
+                  <div class="sb-price-1"><span>Price: </span>₹<%= user.cart[i].productId.price %></div>
+                </div>
+                <div class="col-3 col-lg-1">
+                  <div class="sb-price-2"><span>Total: </span>₹<%= user.cart[i].productId.price*user.cart[i].quantity%></div>
+                </div>
+                <div class="col-1">
+                  <form action="/cart/<%= user.cart[i].productId._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="sb-remove" style="background: none; border: none;">+</button>
+                </form>
+                </div>
+              </div>
+            </div>
+            <% total = total+(user.cart[i].productId.price*user.cart[i].quantity)%>
+            <%}%>
+            <div class="row justify-content-end">
+              <div class="col-lg-6">
+                <div class="sb-cart-total">
+                  <div class="sb-sum">
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="sb-total-title">Subtotal:</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="sb-price-1 text-right">₹<%= total %></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sb-sum">
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="sb-total-title">Estimated shipping:</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="sb-price-1 text-right">₹20</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sb-realy-sum">
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="sb-total-title">Total:</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="sb-price-2 text-right">₹<%= total+20 %></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sb-cart-btns-frame text-right">
+                  <!-- button -->
+                  <a href="/products" class="sb-btn sb-btn-2 sb-btn-gray">
+                    <span class="sb-icon">
+                      <img src="img/ui/icons/arrow-2.svg" alt="icon">
+                    </span>
+                    <span>Continue shopping</span>
+                  </a>
+                  <!-- button end -->
+                  <!-- button -->
+                  <a href="/checkout" class="sb-btn sb-m-0">
+                    <span class="sb-icon">
+                      <img src="img/ui/icons/arrow.svg" alt="icon">
+                    </span>
+                    <span>Checkout</span>
+                  </a>
+                  <!-- button end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- cart end -->
+
+      <!-- footer -->
+      <footer>
+        <div class="container">
+          <div class="sb-footer-frame">
+            <a href="home-1.html" class="sb-logo-frame">
+              <!-- logo img -->
+              <!-- <img src="img/ui/logo.svg" alt="Starbelly"> -->
+            </a>
+            <ul class="sb-social">
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+              <li><a href="#."><i class="far fa-circle"></i></a></li>
+            </ul>
+            <div class="sb-copy">&copy; late 2021 Starbelly. All Rights Reserved.</div>
+          </div>
+        </div>
+      </footer>
+      <!-- footer end -->
+
+    </div>
+    <!-- dynamic content end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  <!-- jquery js -->
+  <script src="js/plugins/jquery.min.js"></script>
+  <!-- smooth scroll js -->
+  <script src="js/plugins/smooth-scroll.js"></script>
+  <!-- swup js -->
+  <script src="js/plugins/swup.min.js"></script>
+  <!-- swiper js -->
+  <script src="js/plugins/swiper.min.js"></script>
+  <!-- datepicker js -->
+  <script src="js/plugins/datepicker.js"></script>
+  <!-- isotope js -->
+  <script src="js/plugins/isotope.js"></script>
+  <!-- sticky -->
+  <script src="js/plugins/sticky.js"></script>
+  <!-- mapbox js -->
+  <script src="js/plugins/mapbox.min.js"></script>
+  <!-- fancybox js -->
+  <script src="js/plugins/fancybox.min.js"></script>
+  <!-- starbelly js -->
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
