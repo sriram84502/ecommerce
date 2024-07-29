@@ -145,6 +145,15 @@ app.get('/cart', isAuth, async (req, res) => {
     res.render("cart",{user:user});
 });
 
+app.get('/orders', isAuth, async (req, res) => {
+    const orders = await Orders.find({ user: req.session.user._id })
+            .populate('user')
+            .populate('product.productId');
+
+    const user = await User.findById(req.session.user).populate('cart.productId');
+    res.render("order",{orders:orders,user:user});
+});
+
 app.put('/cart', isAuth, async (req, res) => {
     try {
         const product = await Product.findById(req.body.productId);

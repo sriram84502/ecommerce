@@ -54,6 +54,9 @@
                   <a href="/products">Products</a>
                 </li>
                 <li class="">
+                  <a href="/orders">Orders</a>
+                </li>
+                <li class="">
                   <a href="/logout">Logout</a>
                 </li>
               </ul>
@@ -197,20 +200,22 @@
                     </div>
                   </div>
                 </div>
+                <form action="/cartp/?_method=PUT" method="post" style="display: inline;">
                 <div class="sb-buttons-frame">
                   <div class="sb-input-number-frame">
                     <div class="sb-input-number-btn sb-sub">-</div>
-                    <input type="number" value="1" min="1" max="10">
+                    <input type="number" value="1" min="1" max="10" name="quantity" id="quantity">
                     <div class="sb-input-number-btn sb-add">+</div>
                   </div>
                   <!-- button -->
-                  <a href="#." class="sb-btn sb-atc">
-                    <span class="sb-icon">
-                      <img src="/img/ui/icons/cart.svg" alt="icon">
-                    </span>
-                    <span class="sb-add-to-cart-text">Add to cart</span>
-                    <span class="sb-added-text">Added</span>
-                  </a>
+                    <input type="hidden" name="productId" value="<%= product._id %>">
+                    <button type="submit" class="sb-btn sb-atc" style="background-color: transparent; border: none;">
+                      <span class="sb-icon">
+                        <img src="img/ui/icons/cart.svg" alt="icon">
+                      </span>
+                      <span class="sb-add-to-cart-text" style="font-size: 16px;">Add to cart</span>
+                    </button>
+                  </form>
                   <!-- button end -->
                 </div>
               </div>

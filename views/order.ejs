@@ -54,8 +54,8 @@
                   <a href="/products">Products</a>
                 </li>
                 <li class="">
-                  <a href="/orders">Orders</a>
-                </li>
+                    <a href="/orders">Orders</a>
+                  </li>
                 <li class="">
                   <a href="/logout">Logout</a>
                 </li>
@@ -122,10 +122,10 @@
               <!-- main title -->
               <div class="sb-main-title-frame">
                 <div class="sb-main-title">
-                  <h1 class="sb-h2">Cart.</h1>
+                  <h1 class="sb-h2">Orders.</h1>
                   <ul class="sb-breadcrumbs">
                     <li><a href="/">Home</a></li>
-                    <li><a href="#.">Cart</a></li>
+                    <li><a href="#.">Orders</a></li>
                   </ul>
                 </div>
               </div>
@@ -143,103 +143,43 @@
             <div class="sb-cart-table-header">
               <div class="row">
                 <div class="col-lg-6">Product</div>
-                <div class="col-lg-3">Quantity</div>
+                <div class="col-lg-1">Quantity</div>
                 <div class="col-lg-1">Price</div>
-                <div class="col-lg-1">Total</div>
-                <div class="col-lg-1"></div>
+                <div class="col-lg-3 text-center">Status</div>
               </div>
             </div>
             <% let total = 0 %>
-            <%for(let i=0;i<user.cart.length;i++){%>
+            <%for(let i=0;i<orders.length;i++){%>
             <div class="sb-cart-item">
               <div class="row align-items-center">
                 <div class="col-lg-6">
                   <a class="sb-product" href="product">
                     <div class="sb-cover-frame">
-                      <img src="<%= user.cart[i].productId.imageUrl %>" alt="product">
+                      <img src="<%= orders[i].product.productId.imageUrl %>" alt="product">
                     </div>
                     <div class="sb-prod-description">
-                      <h4 class="sb-mb-10"><%= user.cart[i].productId.name %></h4>
-                      <p class="sb-text sb-text-sm"><%= user.cart[i].productId.description %>.</p>
+                      <h4 class="sb-mb-10"><%= orders[i].product.productId.name %></h4>
+                      <p class="sb-text sb-text-sm"><%= orders[0].product.productId.description %>.</p>
                     </div>
                   </a>
                 </div>
-                <div class="col-6 col-lg-3">
+                <div class="col-6 col-lg-1">
                   <div class="sb-input-number-frame">
                     <!-- <div class="sb-input-number-btn sb-sub">-</div> -->
-                    <input type="number" value="<%= user.cart[i].quantity %>" disabled min="1" max="10">
+                    <input type="number" value="<%= orders[i].product.quantity %>" disabled min="1" max="10">
                     <!-- <div class="sb-input-number-btn sb-add">+</div> -->
                   </div>
                 </div>
                 <div class="col-3 col-lg-1">
-                  <div class="sb-price-1"><span>Price: </span>₹<%= user.cart[i].productId.price %></div>
+                  <div class="sb-price-1"><span>Price: </span>₹<%= orders[i].product.quantity*orders[i].product.productId.price %></div>
                 </div>
-                <div class="col-3 col-lg-1">
-                  <div class="sb-price-2"><span>Total: </span>₹<%= user.cart[i].productId.price*user.cart[i].quantity%></div>
-                </div>
-                <div class="col-1">
-                  <form action="/cart/<%= user.cart[i].productId._id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="sb-remove" style="background: none; border: none;">+</button>
-                </form>
+                <div class="col-3 col-lg-3 text-center">
+                  <div class="sb-price-2"><span>Total: </span><%= orders[i].status %></div>
                 </div>
               </div>
             </div>
-            <% total = total+(user.cart[i].productId.price*user.cart[i].quantity)%>
+            <% total = total+(user.cart[0].productId.price*user.cart[0].quantity)%>
             <%}%>
-            <div class="row justify-content-end">
-              <div class="col-lg-6">
-                <div class="sb-cart-total">
-                  <div class="sb-sum">
-                    <div class="row">
-                      <div class="col-8">
-                        <div class="sb-total-title">Subtotal:</div>
-                      </div>
-                      <div class="col-4">
-                        <div class="sb-price-1 text-right">₹<%= total %></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="sb-sum">
-                    <div class="row">
-                      <div class="col-8">
-                        <div class="sb-total-title">Estimated shipping:</div>
-                      </div>
-                      <div class="col-4">
-                        <div class="sb-price-1 text-right">₹20</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="sb-realy-sum">
-                    <div class="row">
-                      <div class="col-8">
-                        <div class="sb-total-title">Total:</div>
-                      </div>
-                      <div class="col-4">
-                        <div class="sb-price-2 text-right">₹<%= total+20 %></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="sb-cart-btns-frame text-right">
-                  <!-- button -->
-                  <a href="/products" class="sb-btn sb-btn-2 sb-btn-gray">
-                    <span class="sb-icon">
-                      <img src="img/ui/icons/arrow-2.svg" alt="icon">
-                    </span>
-                    <span>Continue shopping</span>
-                  </a>
-                  <!-- button end -->
-                  <!-- button -->
-                  <a href="/checkout" class="sb-btn sb-m-0">
-                    <span class="sb-icon">
-                      <img src="img/ui/icons/arrow.svg" alt="icon">
-                    </span>
-                    <span>Checkout</span>
-                  </a>
-                  <!-- button end -->
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

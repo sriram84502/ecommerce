@@ -33,6 +33,9 @@
               <ul class="sb-navigation">
                 <li class=""><a href="/">Home</a></li>
                 <li class=""><a href="/products">Products</a></li>
+                <li class="">
+                  <a href="/orders">Orders</a>
+                </li>
                 <li class=""><a href="/logout">Logout</a></li>
               </ul>
             </nav>
@@ -99,7 +102,7 @@
         <div class="container" data-sticky-container>
           <div class="row">
             <div class="col-lg-8">
-              <form class="sb-checkout-form">
+              <form class="sb-checkout-form" id="checkout-form">
                 <div class="sb-mb-30">
                   <h3>Billing details</h3>
                 </div>
@@ -183,7 +186,7 @@
                   <span class="sb-bar"></span>
                   <label>Order notes</label>
                 </div>
-                <button type="submit" class="sb-btn sb-m-0" id="rzp-button1">
+                <button type="button" class="sb-btn sb-m-0" id="rzp-button1">
                   <span class="sb-icon">
                     <img src="img/ui/icons/arrow.svg" alt="icon">
                   </span>
@@ -303,6 +306,23 @@
           "handler": function (response) {
             alert("Payment successful. Payment ID: " + response.razorpay_payment_id);
             // You can now make a request to your server to save the payment info and update the cart/order status
+            fetch('/verify-payment', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature
+              })
+            }).then(function (response) {
+              if (response.ok) {
+                window.location.href = '/';
+              } else {
+                alert('Payment verification failed');
+              }
+            });
           },
           "prefill": {
             "name": "<%= user.name %>",
