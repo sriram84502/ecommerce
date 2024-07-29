@@ -355,7 +355,7 @@ app.post('/admin/products', isAdmin, async (req, res) => {
     })
     await product.save()
     res.redirect('/admin/products');
-})
+});
 
 app.delete('/admin/products/:id', isAdmin, async (req, res) => {
     await Product.findByIdAndDelete(req.params.id);
